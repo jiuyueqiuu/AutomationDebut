@@ -1,7 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-
 """
 selenium is the Python library for automating browsers. You can control Chrome, Firefox, Edge, etc., programmatically.
 
@@ -64,15 +63,22 @@ driver.get(...) tells the already-open Chrome browser to go to the website you s
 """
 
 print(driver.title)
-driver.quit()
 
 
 """
 print(driver.title) retrieves the title of the current webpage (the text that appears in the browser tab) 
 and prints it to the console.
-
-driver.quit() closes the browser completely and ends the Selenium session, freeing up system resources.
 """
 
+# Grab all h2 elements regardless of class
+headlines = driver.find_elements("tag name", "h2")  # or your XPath
+
+for idx, h in enumerate(headlines, start=1):
+    print(f"{idx}. {h.text}")
 
 
+driver.quit()
+
+"""
+driver.quit() closes the browser completely and ends the Selenium session, freeing up system resources.
+"""
